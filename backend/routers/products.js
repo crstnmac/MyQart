@@ -5,6 +5,7 @@ const router = express.Router()
 
 const mongoose = require('mongoose')
 
+/* This is the route for getting all the products. */
 router.get(`/`, async (req, res) => {
   let filter = {}
   if (req.query.categories) {
@@ -18,6 +19,7 @@ router.get(`/`, async (req, res) => {
   res.send(productList)
 })
 
+/* This is the route for getting a single product. */
 router.get(`/:id`, async (req, res) => {
   const product = await Product.findById(req.params.id).populate('category')
   if (!product) {
@@ -26,6 +28,7 @@ router.get(`/:id`, async (req, res) => {
   res.send(product)
 })
 
+/* Creating a new product. */
 router.post(`/`, async (req, res) => {
   const category = await Category.findById(req.body.category)
 

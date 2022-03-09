@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+/* This is a schema for a product. */
 const productSchema = mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
@@ -20,10 +21,12 @@ const productSchema = mongoose.Schema({
   dateCreated: { type: Date, default: Date.now },
 })
 
+/* This is a virtual field that will be added to the JSON representation of the product. */
 productSchema.virtual('id').get(function () {
   return this._id.toHexString()
 })
 
+/* This is telling mongoose to include virtual fields in the JSON representation of the product. */
 productSchema.set('toJSON', {
   virtuals: true,
 })

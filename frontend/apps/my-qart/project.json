@@ -1,0 +1,91 @@
+{
+  "projectType": "application",
+  "root": "apps/my-qart",
+  "sourceRoot": "apps/my-qart/src",
+  "prefix": "frontend",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/my-qart",
+        "index": "apps/my-qart/src/index.html",
+        "main": "apps/my-qart/src/main.ts",
+        "polyfills": "apps/my-qart/src/polyfills.ts",
+        "tsConfig": "apps/my-qart/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/my-qart/src/favicon.ico", "apps/my-qart/src/assets"],
+        "styles": ["apps/my-qart/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/my-qart/src/environments/environment.ts",
+              "with": "apps/my-qart/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "my-qart:build:production"
+        },
+        "development": {
+          "browserTarget": "my-qart:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "my-qart:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/my-qart/src/**/*.ts",
+          "apps/my-qart/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/my-qart"],
+      "options": {
+        "jestConfig": "apps/my-qart/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

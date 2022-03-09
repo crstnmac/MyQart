@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 const api = process.env.API_URL
 const port = process.env.PORT
 const cors = require('cors')
+const authJwt = require('./helpers/jwt')
+const errorHandler = require('./helpers/jwt')
 
 app.use(cors())
 app.options('*', cors())
@@ -13,6 +15,8 @@ app.options('*', cors())
 //middleware
 app.use(express.json())
 app.use(morgan('tiny'))
+app.use(authJwt())
+app.use(errorHandler())
 
 //Routers
 const categoriesRouter = require('./routers/categories')

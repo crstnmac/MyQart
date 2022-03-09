@@ -16,6 +16,10 @@ app.options('*', cors())
 app.use(express.json())
 app.use(morgan('tiny'))
 app.use(authJwt())
+app.use(
+  '/public/images/products',
+  express.static(__dirname + '/public/images/products')
+)
 app.use(errorHandler())
 
 //Routers

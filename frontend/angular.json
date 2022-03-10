@@ -4,6 +4,10 @@
     "admin-my-qart": "apps/admin-my-qart",
     "admin-my-qart-e2e": "apps/admin-my-qart-e2e",
     "my-qart": "apps/my-qart",
-    "my-qart-e2e": "apps/my-qart-e2e"
+    "my-qart-e2e": "apps/my-qart-e2e",
+    "orders": "libs/orders",
+    "products": "libs/products",
+    "ui": "libs/ui",
+    "users": "libs/users"
   }
 }

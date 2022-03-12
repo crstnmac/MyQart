@@ -1,0 +1,44 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit Category' : 'New Category'" subheader="You can add or edit categories">
+    <div class="grid p-fluid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+          </div>
+          <div class="p-toolbar-group-right">
+            <p-button [label]="editMode? 'Update' : 'Create'" [icon]=" editMode ? 'pi pi-upload' : 'pi pi-plus' "
+              (click)="onSubmit()"></p-button>
+            <p-button label="Cancel" icon="pi pi-arrow-circle-left" (click)="onCancel()"
+              styleClass="p-button-secondary ml-2"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid ">
+      <div class="col-12">
+        <form [formGroup]="form" action="">
+          <div class="grid p-fluid">
+            <div class="col-12 md:col-6">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-sitemap
+"></i></span>
+                <input type="text" pInputText formControlName="name" placeholder="Name">
+              </div>
+              <small *ngIf="categoryForm['name'].invalid && isSubmited" class="p-error">Name is required</small>
+
+            </div>
+
+            <div class="col-12 md:col-6">
+              <div class="p-inputgroup">
+                <input type="text" pInputText formControlName="icon" placeholder="Icon">
+              </div>
+              <small *ngIf="categoryForm['icon'].invalid && isSubmited" class="p-error">Icon is required</small>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

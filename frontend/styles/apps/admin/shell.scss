@@ -1,0 +1,64 @@
+.admin {
+  &-wrapper {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  &-content {
+    width: calc(100% - 175px);
+    margin-left: 175px;
+    padding: 15px;
+  }
+
+  &-sidebar {
+    position: fixed;
+    width: 175px;
+    background-color: var(--surface-ground);
+    height: 100%;
+    top: 0;
+
+    .logo {
+      padding: 20px;
+      width: 100%;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .links {
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          display: block;
+          list-style: none;
+          width: 100%;
+
+          a {
+            color: var(--text-color);
+            padding: 10px 15px;
+            display: block;
+            width: 100%;
+
+            &:hover {
+              background-color: var(--surface-hover);
+              // color: var(--surface-a);
+            }
+
+            i {
+              margin-right: 10px;
+              margin-top: 0;
+              float: left;
+            }
+
+            &.logout {
+              color: var(--blue-500);
+            }
+          }
+        }
+      }
+    }
+  }
+}

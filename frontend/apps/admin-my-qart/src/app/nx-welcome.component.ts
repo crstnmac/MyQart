@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 /* eslint-disable */
 
 @Component({
-  selector: 'frontend-nx-welcome',
+  selector: 'admin-nx-welcome',
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *

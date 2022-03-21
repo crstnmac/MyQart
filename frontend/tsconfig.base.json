@@ -18,8 +18,10 @@
       "@my-qart/orders": ["libs/orders/src/index.ts"],
       "@my-qart/products": ["libs/products/src/index.ts"],
       "@my-qart/ui": ["libs/ui/src/index.ts"],
-      "@my-qart/users": ["libs/users/src/index.ts"]
-    }
+      "@my-qart/users": ["libs/users/src/index.ts"],
+      "@env/*": ["environments/*"]
+    },
+    "strictPropertyInitialization": false
   },
   "exclude": ["node_modules", "tmp"]
 }

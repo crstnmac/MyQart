@@ -1,9 +1,9 @@
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { CategoriesService, Category } from '@my-qart/products'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/api'
-import { interval, lastValueFrom, take, timer } from 'rxjs'
+import { interval, lastValueFrom, take } from 'rxjs'
 import { Location } from '@angular/common'
 
 @Component({
@@ -15,6 +15,7 @@ export class CategoriesFormComponent implements OnInit {
   form: FormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     icon: ['', Validators.required],
+    color: ['', Validators.required],
   })
   isSubmited = false
   editMode = false
@@ -40,9 +41,10 @@ export class CategoriesFormComponent implements OnInit {
     }
 
     const category: Category = {
-      _id: this.currentCategoryId,
+      id: this.currentCategoryId,
       name: this.categoryForm['name'].value,
       icon: this.categoryForm['icon'].value,
+      color: this.categoryForm['color'].value,
     }
 
     if (this.editMode) {
@@ -73,7 +75,7 @@ export class CategoriesFormComponent implements OnInit {
       complete: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Category created',
+          summary: `Category ${category.name}  created`,
           detail: 'Category created successfully',
         })
       },
@@ -105,15 +107,15 @@ export class CategoriesFormComponent implements OnInit {
       complete: () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Category created',
-          detail: 'Category created successfully',
+          summary: `Category ${category.name}  updated`,
+          detail: 'Category updated successfully',
         })
       },
       error: (error) => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Category creation failed',
-          detail: `Category creation failed: ${error.message}`,
+          summary: 'Category updation failed',
+          detail: `Category updation failed: ${error.message}`,
         })
       },
       next: () => {
@@ -136,6 +138,7 @@ export class CategoriesFormComponent implements OnInit {
           this.form.patchValue({
             name: category.name,
             icon: category.icon,
+            color: category.color,
           })
         })
       }

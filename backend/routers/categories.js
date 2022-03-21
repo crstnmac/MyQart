@@ -1,5 +1,6 @@
 const { Category } = require('../models/category')
 const express = require('express')
+const { clearConfigCache } = require('prettier')
 const router = express.Router()
 
 router.get(`/`, async (req, res) => {

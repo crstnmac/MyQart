@@ -19,21 +19,21 @@
       <div class="col-12">
         <form [formGroup]="form" action="">
           <div class="grid p-fluid">
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-5">
               <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-sitemap
-"></i></span>
+                <span class="p-inputgroup-addon"><i class="pi pi-sitemap"></i></span>
                 <input type="text" pInputText formControlName="name" placeholder="Name">
               </div>
               <small *ngIf="categoryForm['name'].invalid && isSubmited" class="p-error">Name is required</small>
-
             </div>
-
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-5">
               <div class="p-inputgroup">
                 <input type="text" pInputText formControlName="icon" placeholder="Icon">
               </div>
               <small *ngIf="categoryForm['icon'].invalid && isSubmited" class="p-error">Icon is required</small>
+            </div>
+            <div class="p-field col md:col-2">
+              <p-colorPicker formControlName="color"></p-colorPicker>
 
             </div>
           </div>

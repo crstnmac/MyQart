@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { environment } from '@env/environment'
 import { Category } from '../models/category'
 import { Observable } from 'rxjs'
 
@@ -7,34 +8,29 @@ import { Observable } from 'rxjs'
   providedIn: 'root',
 })
 export class CategoriesService {
+  apiURLCategories = environment.apiURL + '/categories'
+
   constructor(private http: HttpClient) {}
 
-  getCategory(categoryId: string): Observable<Category> {
-    return this.http.get<Category>(
-      `http://localhost:3000/api/v1/categories/${categoryId}`
-    )
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.apiURLCategories)
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:3000/api/v1/categories')
+  getCategory(categoryId: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiURLCategories}/${categoryId}`)
   }
 
   createCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(
-      'http://localhost:3000/api/v1/categories',
-      category
-    )
+    return this.http.post<Category>(this.apiURLCategories, category)
   }
 
   deleteCategory(categoryId: string): Observable<unknown> {
-    return this.http.delete<unknown>(
-      `http://localhost:3000/api/v1/categories/${categoryId}`
-    )
+    return this.http.delete<unknown>(`${this.apiURLCategories}/${categoryId}`)
   }
 
   updateCategory(category: Category): Observable<Category> {
     return this.http.put<Category>(
-      `http://localhost:3000/api/v1/categories/${category._id}`,
+      `${this.apiURLCategories}/${category.id}`,
       category
     )
   }

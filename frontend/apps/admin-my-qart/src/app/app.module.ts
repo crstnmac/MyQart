@@ -11,8 +11,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { ShellComponent } from './shared/shell/shell.component'
 import { SidebarComponent } from './shared/sidebar/sidebar.component'
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component'
-import { CategoriesFormComponent } from './categories/categories-form/categories-form.component'
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component'
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component'
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { CardModule } from 'primeng/card'
@@ -22,6 +22,15 @@ import { TableModule } from 'primeng/table'
 import { InputTextModule } from 'primeng/inputtext'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ToastModule } from 'primeng/toast'
+import { ColorPickerModule } from 'primeng/colorpicker'
+import { ProductsListComponent } from './pages/products/products-list/products-list.component'
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component'
+import { InputNumberModule } from 'primeng/inputnumber'
+import { InputTextareaModule } from 'primeng/inputtextarea'
+import { InputSwitchModule } from 'primeng/inputswitch'
+import { DropdownModule } from 'primeng/dropdown'
+import { CheckboxModule } from 'primeng/checkbox'
+import { EditorModule } from 'primeng/editor'
 
 const UX_MODULE = [
   CardModule,
@@ -30,6 +39,13 @@ const UX_MODULE = [
   TableModule,
   InputTextModule,
   ConfirmDialogModule,
+  ColorPickerModule,
+  InputNumberModule,
+  InputTextareaModule,
+  InputSwitchModule,
+  DropdownModule,
+  CheckboxModule,
+  EditorModule,
 ]
 
 const routes: Routes = [
@@ -53,6 +69,19 @@ const routes: Routes = [
         path: 'categories/form/:id',
         component: CategoriesFormComponent,
       },
+
+      {
+        path: 'products',
+        component: ProductsListComponent,
+      },
+      {
+        path: 'products/form',
+        component: ProductsFormComponent,
+      },
+      {
+        path: 'products/form/:id',
+        component: ProductsFormComponent,
+      },
     ],
   },
 ]
@@ -66,6 +95,8 @@ const routes: Routes = [
     SidebarComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
   ],
   imports: [
     BrowserModule,

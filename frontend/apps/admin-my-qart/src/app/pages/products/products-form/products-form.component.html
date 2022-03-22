@@ -15,7 +15,7 @@
         </p-toolbar>
       </div>
     </div>
-    <div class="grid ">
+    <div class="grid">
       <div class="col-12">
         <form [formGroup]="form" action="">
           <div class="grid p-fluid">
@@ -58,7 +58,7 @@
             <div class="col-12 lg:col-4">
               <p-dropdown [options]="categories" optionLabel="name" formControlName="category"
                 [style]="{'width':'100%'}" [filter]="true" filterBy="name" placeholder="Select a category"
-                optionValue="id">
+                [showClear]="true" optionValue="id">
               </p-dropdown>
               <small *ngIf=" productForm['category'].invalid && isSubmited" class="p-error">Category is
                 required</small>

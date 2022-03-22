@@ -174,6 +174,7 @@ export class ProductsFormComponent implements OnInit {
             isFeatured: product.isFeatured,
           })
           this.imageDisplay = product.image
+          this.form.get('image')?.setValidators([])
           this.form.get('image')?.updateValueAndValidity()
         })
       }

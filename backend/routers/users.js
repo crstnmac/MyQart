@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post(`/register`, async (req, res) => {
+  console.log(req.body)
   let user = new User({
     name: req.body.name,
     email: req.body.email,
@@ -49,7 +50,7 @@ router.put('/:id', async (req, res) => {
   const userExist = await User.findById(req.params.id)
   let newPassword
   if (req.body.password) {
-    newPassword = bcrypt.hashSync(req.body.password, secret)
+    newPassword = bcrypt.hashSync(req.body.password, 10)
   } else {
     newPassword = userExist.passwordHash
   }

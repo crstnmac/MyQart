@@ -31,6 +31,10 @@ import { InputSwitchModule } from 'primeng/inputswitch'
 import { DropdownModule } from 'primeng/dropdown'
 import { CheckboxModule } from 'primeng/checkbox'
 import { EditorModule } from 'primeng/editor'
+import { UsersFormComponent } from './pages/users/users-form/users-form.component'
+import { UsersListComponent } from './pages/users/users-list/users-list.component'
+import { InputMaskModule } from 'primeng/inputmask'
+import { PasswordModule } from 'primeng/password'
 
 const UX_MODULE = [
   CardModule,
@@ -46,6 +50,8 @@ const UX_MODULE = [
   DropdownModule,
   CheckboxModule,
   EditorModule,
+  InputMaskModule,
+  PasswordModule,
 ]
 
 const routes: Routes = [
@@ -57,6 +63,7 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
       },
+      //categories
       {
         path: 'categories',
         component: CategoriesListComponent,
@@ -69,7 +76,7 @@ const routes: Routes = [
         path: 'categories/form/:id',
         component: CategoriesFormComponent,
       },
-
+      //products
       {
         path: 'products',
         component: ProductsListComponent,
@@ -81,6 +88,19 @@ const routes: Routes = [
       {
         path: 'products/form/:id',
         component: ProductsFormComponent,
+      },
+      //users
+      {
+        path: 'users',
+        component: UsersListComponent,
+      },
+      {
+        path: 'users/form',
+        component: UsersFormComponent,
+      },
+      {
+        path: 'users/form/:id',
+        component: UsersFormComponent,
       },
     ],
   },
@@ -97,6 +117,8 @@ const routes: Routes = [
     CategoriesFormComponent,
     ProductsListComponent,
     ProductsFormComponent,
+    UsersFormComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ const orderSchema = mongoose.Schema({
   shippingZip: { type: String, required: true },
   shippingCountry: { type: String, required: true },
   phone: { type: String, required: true },
-  status: { type: String, required: true, default: 'pending' },
+  status: { type: String, required: true, default: '0' },
   totalPrice: { type: Number, required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   dateCreated: { type: Date, default: Date.now },

@@ -1,0 +1,99 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+  <p-card [style]="{'border-radius':'0px','height':'100vh','overflow':'auto'}" header="View Order"
+    subheader="You can edit order status here">
+    <p-fieldset legend="Order Details" [toggleable]="true" styleClass="mb-4">
+
+      <div class="grid p-fluid">
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class=" p-inputgroup-addon">Order ID</span>
+            <span class="p-inputgroup-addon">{{order.id}}</span>
+          </div>
+        </div>
+
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Date Ordered</span>
+            <span class="p-inputgroup-addon">{{order.dateCreated | date:'short' }}</span>
+          </div>
+        </div>
+
+        <div class="col-12 lg:col-4">
+          <p-dropdown optionLabel="name" [style]="{'width':'100%'}" filterBy="label" placeholder="Order Status"
+            optionValue="id" [options]="orderStatuses" [(ngModel)]="selectedStatus" (onChange)="onStatusChange($event)">
+          </p-dropdown>
+        </div>
+
+
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Total Price</span>
+            <span class="p-inputgroup-addon">{{order.totalPrice| currency}}</span>
+          </div>
+        </div>
+      </div>
+
+    </p-fieldset>
+    <p-fieldset legend="Order Items" [toggleable]="true" styleClass="mb-4 ">
+      <p-table [value]="orderItems" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th>Brand
+            </th>
+            <th>Category
+            </th>
+            <th pSortableColumn="totalPrice">Price <p-sortIcon field="totalPrice"></p-sortIcon>
+            </th>
+            <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon>
+            </th>
+            <th pSortableColumn="subtotal">Subtotal Price<p-sortIcon field="subtotal"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item.product.name}}</td>
+            <td>{{item.product.brand}}</td>
+            <td>{{item.product.category.name}}</td>
+            <td>{{item.product.price | currency:'INR'}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.product.price * item.quantity | currency:'INR'}}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <tr>
+            <td colspan="5" class="text-right">Total</td>
+            <td>{{order.totalPrice | currency:'INR'}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-fieldset>
+    <h3>Order Address</h3>
+
+    <div class="grid p-fluid">
+      <div class="col-4 lg:col-4">
+        <h4>Address</h4>
+        <p> {{order.shippingAddress1}} <br />
+          {{order.shippingAddress2}} <br />
+          {{order.shippingZip}} {{order.shippingCity}}<br />
+          {{order.shippingCountry}}</p>
+      </div>
+
+      <div class="col-4 lg:col-4">
+        <h4>Customer Info</h4>
+        <p>{{order.user?.name}}</p>
+      </div>
+
+      <div class="col-4 lg:col-4">
+        <h4>Contact Info</h4>
+        <p>{{order.phone}}</p>
+      </div>
+
+    </div>
+
+  </p-card>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>

@@ -44,18 +44,18 @@ router.post(`/`, async (req, res) => {
 
   const orderItemIdsResolve = await orderItemsIds
 
-  const totalPrices = Promise.all(
+  const totalPrices = await Promise.all(
     orderItemIdsResolve.map(async (orderItemId) => {
       const orderItem = await OrderItem.findById(orderItemId).populate(
         'product',
         'price'
       )
-      const totalPrice = orderItem.quantity * orderItem.product.price
+      const totalPrice = orderItem.product.price * orderItem.quantity
       return totalPrice
     })
   )
 
-  const totalPrice = totalPrices.reduce((acc, curr) => acc + curr, 0)
+  const totalPrice = totalPrices.reduce((a, b) => a + b, 0)
 
   let order = new Order({
     orderItems: orderItemIdsResolve,

@@ -6,14 +6,13 @@
   }
 
   &-content {
-    width: calc(100% - 175px);
-    margin-left: 175px;
-    padding: 15px;
+    width: calc(100% - 160px);
+    margin-left: 160px;
   }
 
   &-sidebar {
     position: fixed;
-    width: 175px;
+    width: 160px;
     background-color: var(--surface-ground);
     height: 100%;
     top: 0;

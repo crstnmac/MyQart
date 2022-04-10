@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Order, OrdersService } from '@my-qart/orders'
 import { ConfirmationService, MessageService } from 'primeng/api'
-import { interval, take, lastValueFrom } from 'rxjs'
+import { interval, take, lastValueFrom, Subject, takeUntil } from 'rxjs'
 import { ORDER_STATUS } from '../order.constants'
 
 @Component({
@@ -10,8 +10,9 @@ import { ORDER_STATUS } from '../order.constants'
   templateUrl: './orders-list.component.html',
   styles: [],
 })
-export class OrdersListComponent implements OnInit {
+export class OrdersListComponent implements OnInit, OnDestroy {
   orders: Order[] = []
+  endsubs$ = new Subject()
 
   orderStatus: { [index: number]: { label: string; color: string } } =
     ORDER_STATUS
@@ -22,6 +23,10 @@ export class OrdersListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.endsubs$.next(this.orders)
+    this.endsubs$.complete()
+  }
 
   ngOnInit(): void {
     this.getOrders()
@@ -73,8 +78,11 @@ export class OrdersListComponent implements OnInit {
   }
 
   private getOrders() {
-    this.orderService.getOrders().subscribe((orders: Order[]) => {
-      this.orders = orders
-    })
+    this.orderService
+      .getOrders()
+      .pipe(takeUntil(this.endsubs$))
+      .subscribe((orders: Order[]) => {
+        this.orders = orders
+      })
   }
 }

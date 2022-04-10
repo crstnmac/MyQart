@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Product, ProductsService } from '@my-qart/products'
 import { ConfirmationService, MessageService } from 'primeng/api'
-import { interval, lastValueFrom, take } from 'rxjs'
+import { interval, lastValueFrom, Subject, take, takeUntil } from 'rxjs'
 
 @Component({
   selector: 'admin-products-list',
   templateUrl: './products-list.component.html',
   styles: [],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
   products: Product[] = []
-
+  endSubs$ = new Subject()
   constructor(
     private productService: ProductsService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.endSubs$.next(this.products)
+    this.endSubs$.complete()
+  }
 
   ngOnInit(): void {
     this.getProducts()
@@ -69,8 +73,11 @@ export class ProductsListComponent implements OnInit {
   }
 
   private getProducts() {
-    this.productService.getProducts().subscribe((products) => {
-      this.products = products
-    })
+    this.productService
+      .getProducts()
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((products) => {
+        this.products = products
+      })
   }
 }

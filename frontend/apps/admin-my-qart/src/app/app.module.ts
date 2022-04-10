@@ -1,13 +1,12 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { CategoriesService } from '@my-qart/products'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { AppComponent } from './app.component'
 import { NxWelcomeComponent } from './nx-welcome.component'
-import { RouterModule, Routes } from '@angular/router'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { ShellComponent } from './shared/shell/shell.component'
 import { SidebarComponent } from './shared/sidebar/sidebar.component'
@@ -39,6 +38,8 @@ import { OrdersListComponent } from './pages/orders/orders-list/orders-list.comp
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component'
 import { TagModule } from 'primeng/tag'
 import { FieldsetModule } from 'primeng/fieldset'
+import { JwtInterceptor, UsersModule } from '@my-qart/users'
+import { AppRoutingModule } from './app-routing.module'
 
 const UX_MODULE = [
   CardModule,
@@ -58,67 +59,6 @@ const UX_MODULE = [
   PasswordModule,
   TagModule,
   FieldsetModule,
-]
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ShellComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-      //categories
-      {
-        path: 'categories',
-        component: CategoriesListComponent,
-      },
-      {
-        path: 'categories/form',
-        component: CategoriesFormComponent,
-      },
-      {
-        path: 'categories/form/:id',
-        component: CategoriesFormComponent,
-      },
-      //products
-      {
-        path: 'products',
-        component: ProductsListComponent,
-      },
-      {
-        path: 'products/form',
-        component: ProductsFormComponent,
-      },
-      {
-        path: 'products/form/:id',
-        component: ProductsFormComponent,
-      },
-      //users
-      {
-        path: 'users',
-        component: UsersListComponent,
-      },
-      {
-        path: 'users/form',
-        component: UsersFormComponent,
-      },
-      {
-        path: 'users/form/:id',
-        component: UsersFormComponent,
-      },
-      //orders
-      {
-        path: 'orders',
-        component: OrdersListComponent,
-      },
-      {
-        path: 'orders/view/:id',
-        component: OrdersDetailComponent,
-      },
-    ],
-  },
 ]
 
 @NgModule({
@@ -144,10 +84,16 @@ const routes: Routes = [
     ReactiveFormsModule,
     ToastModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
+    AppRoutingModule,
+    UsersModule,
     ...UX_MODULE,
   ],
-  providers: [CategoriesService, MessageService, ConfirmationService],
+  providers: [
+    CategoriesService,
+    MessageService,
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

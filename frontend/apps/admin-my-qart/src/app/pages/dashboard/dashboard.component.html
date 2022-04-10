@@ -1,1 +1,51 @@
-<p>dashboard works!</p>
+<div class="admin-page">
+  <p-card header="Dashboard" subheader="Latest Updates"
+    [style]="{'border-radius':'0px','height':'100vh','overflow':'auto'}">
+    <div class="grid p-fluid">
+      <div class="col">
+        <p-card styleClass="d-orders d-item">
+          <div class="flex justify-content-between">
+            <div class="flex-column">
+              <i class="pi pi-shopping-cart w-full"></i>
+            </div>
+            <span class="number">{{statistics[0]}}</span>
+          </div>
+          <span class="name">Orders</span>
+        </p-card>
+      </div>
+      <div class="col">
+        <p-card styleClass="d-products d-item">
+          <div class="flex justify-content-between">
+            <div class="flex-column">
+              <i class="pi pi-briefcase w-full"></i>
+            </div>
+            <span class="number">{{statistics[1]}}</span>
+          </div>
+          <span class="name">Products</span>
+        </p-card>
+      </div>
+      <div class="col">
+        <p-card styleClass="d-users  d-item">
+          <div class="flex justify-content-between ">
+            <div class="flex-column">
+              <i class="pi pi-users w-full"></i>
+            </div>
+            <span class="number">{{statistics[2]}}</span>
+          </div>
+          <span class="name">Users</span>
+        </p-card>
+      </div>
+      <div class="col">
+        <p-card styleClass="d-totalsales  d-item">
+          <div class="flex justify-content-between ">
+            <div class="flex-colum">
+              <i class="pi pi-dollar w-full"></i>
+            </div>
+            <span class="number">{{statistics[3] | currency}}</span>
+          </div>
+          <span class="name">Total Sales</span>
+        </p-card>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -2,7 +2,7 @@ import { User } from '../models/user'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from '@env/environment'
-import { Observable } from 'rxjs'
+import { map, Observable } from 'rxjs'
 import * as countriesLib from 'i18n-iso-countries'
 
 declare const require: any
@@ -50,5 +50,11 @@ export class UsersService {
 
   getCountry(countryKey: string): string {
     return countriesLib.getName(countryKey, 'en')
+  }
+
+  getUsersCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLUsers}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.userCount))
   }
 }

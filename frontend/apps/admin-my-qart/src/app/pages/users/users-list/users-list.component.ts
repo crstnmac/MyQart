@@ -1,8 +1,8 @@
 import { UsersService } from '@my-qart/users'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { Router } from '@angular/router'
-import { interval, lastValueFrom, take } from 'rxjs'
+import { interval, lastValueFrom, Subject, take, takeUntil } from 'rxjs'
 import { User } from '@my-qart/users'
 
 @Component({
@@ -10,15 +10,19 @@ import { User } from '@my-qart/users'
   templateUrl: './users-list.component.html',
   styles: [],
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
   users: User[] = []
-
+  endSubs$ = new Subject()
   constructor(
     private usersService: UsersService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.endSubs$.next(this.users)
+    this.endSubs$.complete()
+  }
 
   ngOnInit(): void {
     this.getUsers()
@@ -76,8 +80,11 @@ export class UsersListComponent implements OnInit {
   }
 
   private getUsers() {
-    this.usersService.getUsers().subscribe((users) => {
-      this.users = users
-    })
+    this.usersService
+      .getUsers()
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((users) => {
+        this.users = users
+      })
   }
 }

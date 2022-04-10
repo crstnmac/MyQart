@@ -2,7 +2,7 @@ import { Product } from './../models/product'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from '@env/environment'
-import { Observable } from 'rxjs'
+import { map, Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +33,11 @@ export class ProductsService {
       `${this.apiURLProducts}/${productId}`,
       product
     )
+  }
+
+  getProductsCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLProducts}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.productCount))
   }
 }

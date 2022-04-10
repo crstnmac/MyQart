@@ -1,0 +1,41 @@
+.d-item {
+  color: var(--text-color);
+
+  .pi {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  .number {
+    font-weight: 700;
+    font-size: 2.5rem;
+  }
+}
+
+.d-orders {
+  background: linear-gradient(90deg, #3f2b96 0%, #a8c0ff 100%);
+}
+
+.d-products {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+
+.d-users {
+  background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
+}
+
+.d-totalsales {
+  background: radial-gradient(
+    circle at 40% 50%,
+    #ffc954,
+    #fa9955,
+    #f56c57,
+    #f0596e,
+    #eb5b97
+  );
+}

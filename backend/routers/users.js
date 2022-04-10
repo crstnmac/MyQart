@@ -107,12 +107,14 @@ router.post('/login', async (req, res) => {
 })
 
 router.get(`/get/count`, async (req, res) => {
-  const userCount = req.params.count ? req.params.count : 0
-  const users = await User.countDocuments()
-  if (!users) {
+  const userCount = await User.countDocuments()
+
+  if (!userCount) {
     res.status(500).json({ success: false })
   }
-  res.send(users)
+  res.send({
+    userCount: userCount,
+  })
 })
 
 router.delete('/:id', (req, res) => {

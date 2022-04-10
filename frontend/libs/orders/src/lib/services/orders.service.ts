@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from '@env/environment'
 import { Order } from '../models/order'
-import { Observable } from 'rxjs'
+import { map, Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +33,17 @@ export class OrdersService {
     orderId: string
   ): Observable<Order> {
     return this.http.put<Order>(`${this.apiURLOrders}/${orderId}`, orderStaus)
+  }
+
+  getOrdersCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLOrders}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.orderCount))
+  }
+
+  getOrdersTotalSales(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLOrders}/get/totalsales`)
+      .pipe(map((objectValue: any) => objectValue.totalsales))
   }
 }

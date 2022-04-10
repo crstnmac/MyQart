@@ -1,0 +1,25 @@
+.login-register {
+  background-image: radial-gradient(circle 610px at 5.2% 51.6%, rgba(5, 8, 114, 1) 0%, rgba(7, 3, 53, 1) 97.5%);
+  height: 100vh;
+  color: var(--text-color);
+  &-panel{
+    width: 650px;
+    height: 525px;
+    border-radius: 1rem;
+    background-color: var(--surface-a);
+    position: absolute;
+    left: calc(50% - 325px);
+    top: calc(50% - 260px);
+
+    video{
+      height: 100%;
+      width: 50%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+  }
+}

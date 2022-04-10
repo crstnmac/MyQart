@@ -5,7 +5,7 @@
   <div class="links">
     <ul>
       <li>
-        <a routerLink="/dashboard"> <i class="pi pi-home"></i> Dashboard</a>
+        <a routerLink=""> <i class="pi pi-home"></i> Dashboard</a>
       </li>
       <li>
         <a routerLink="/products"> <i class="pi pi-briefcase"></i> Products</a>
@@ -20,7 +20,7 @@
         <a routerLink="/users"> <i class="pi pi-users"></i> Users</a>
       </li>
       <li>
-        <a routerLink="/logout" class="logout"> <i class="pi pi-sign-out"></i> Logout</a>
+        <a routerLink="/logout" class="logout" (click)="logoutUser()"> <i class="pi pi-sign-out"></i> Logout</a>
       </li>
 
     </ul>

@@ -1,21 +1,21 @@
 {
+  "projectType": "library",
   "root": "libs/ui",
   "sourceRoot": "libs/ui/src",
-  "projectType": "library",
+  "prefix": "frontend",
   "targets": {
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/ui/**/*.ts"]
-      }
-    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/ui"],
       "options": {
         "jestConfig": "libs/ui/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
       }
     }
   },

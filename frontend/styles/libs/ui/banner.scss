@@ -1,0 +1,27 @@
+.banner {
+  height: 280px;
+  width: 100%;
+  background-color: #d7effb;
+  border-radius: 15px;
+
+  &-text {
+    margin-top: 50px;
+    color: var(--surface-700);
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 2em;
+      font-weight: 300;
+    }
+  }
+
+  &-image {
+    padding-top: 45px;
+  }
+}

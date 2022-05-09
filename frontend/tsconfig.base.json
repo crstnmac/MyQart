@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["environments/*"],
+      "@frontend/ui": ["libs/ui/src/index.ts"],
       "@my-qart/orders": ["libs/orders/src/index.ts"],
       "@my-qart/products": ["libs/products/src/index.ts"],
-      "@my-qart/ui": ["libs/ui/src/index.ts"],
-      "@my-qart/users": ["libs/users/src/index.ts"],
-      "@env/*": ["environments/*"]
+      "@my-qart/users": ["libs/users/src/index.ts"]
     },
     "strictPropertyInitialization": false
   },

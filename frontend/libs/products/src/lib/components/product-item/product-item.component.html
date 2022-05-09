@@ -1,0 +1,11 @@
+<div class="product-item" *ngIf="product">
+  <div class="product-item-wrapper">
+    <p-image [src]="product.image!" alt="Image" width="100%" height="150px" class="image"></p-image>
+
+    <h4 class="name">{{product.name}}</h4>
+    <h5 class="price"> {{product.price | currency}} </h5>
+    <button pButton type="button" label="Add to cart" icon="pi pi-shopping-cart" iconPos="right"
+      class="p-button mt-3 p-button-rounded p-button-danger"></button>
+
+  </div>
+</div>

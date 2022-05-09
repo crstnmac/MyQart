@@ -6,9 +6,10 @@
 
 //Libraries
 @import '~primeicons/primeicons.css';
-@import '~primeng/resources/themes/lara-dark-teal/theme.css';
+@import '~primeng/resources/themes/tailwind-light/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
+@import '~animate.css/animate.css';
 
 @import './base/configuration.scss';
 
@@ -20,3 +21,10 @@
 
 //libs
 @import './libs/libs.scss';
+
+.container {
+  width: 1200px;
+  padding: 15px;
+  margin: 0 auto;
+  background: var(--surface-100);
+}

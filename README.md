@@ -1,11 +1,11 @@
 
-# MyQart Ecommerce
+# MyQart Ecommerce Project
 
 
 
 ## Tech Stack
 
-**Client:** Angular, NGRX
+**Client:** NX, Angular, NGRX
 
 **Server:** Node, Express
 
@@ -32,9 +32,18 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the backend server
 
 ```bash
   npm run start
+```
+
+Run the frontend server
+```sh
+  cd ..
+  cd frontend
+  npm install
+  nx run admin-my-qart:serve
+  nx run my-qart:serve  #in another terminal
 ```
 

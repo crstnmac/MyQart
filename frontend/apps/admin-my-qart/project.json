@@ -1,14 +1,11 @@
 {
   "projectType": "application",
-  "root": "apps/admin-my-qart",
   "sourceRoot": "apps/admin-my-qart/src",
   "prefix": "frontend",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/admin-my-qart",
         "index": "apps/admin-my-qart/src/index.html",
@@ -25,9 +22,7 @@
           "node_modules/quill/dist/quill.core.css",
           "node_modules/quill/dist/quill.snow.css"
         ],
-        "scripts": [
-          "node_modules/quill/dist/quill.js"
-        ]
+        "scripts": ["node_modules/quill/dist/quill.js"]
       },
       "configurations": {
         "production": {
@@ -91,11 +86,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/admin-my-qart"
-      ],
+      "outputs": ["coverage/apps/admin-my-qart"],
       "options": {
-        "jestConfig": "apps/admin-my-qart/jest.config.js",
+        "jestConfig": "apps/admin-my-qart/jest.config.ts",
         "passWithNoTests": true
       }
     }

@@ -1,16 +1,13 @@
 {
   "projectType": "library",
-  "root": "libs/users",
   "sourceRoot": "libs/users/src",
   "prefix": "users",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/users"
-      ],
+      "outputs": ["coverage/libs/users"],
       "options": {
-        "jestConfig": "libs/users/jest.config.js",
+        "jestConfig": "libs/users/jest.config.ts",
         "passWithNoTests": true
       }
     },

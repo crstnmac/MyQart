@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MyQart" type="js.build_tools.nx">
+    <node-interpreter value="project" />
+    <nxfile value="$PROJECT_DIR$/nx.json" />
+    <tasks>
+      <task value="my-qart:serve" />
+    </tasks>
+    <arguments value="--port 4100" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

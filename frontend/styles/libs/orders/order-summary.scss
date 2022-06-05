@@ -1,0 +1,27 @@
+.order-summary{
+  background-color: var(--surface-0);
+  padding: 15px;
+  border: 1px solid var(--surface-200);
+
+  .summary-price {
+    display: flex;
+    margin-bottom: 15px;
+    span {
+      display: block;
+      width: 70%;
+
+      &:last-child {
+        width: 30%;
+        font-weight: 600;
+      }
+
+      &.free {
+        color: green;
+      }
+    }
+  }
+
+  .checkout-button{
+    width: 100%;
+  }
+}

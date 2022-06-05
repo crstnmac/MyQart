@@ -13,6 +13,7 @@ import { NavComponent } from './shared/nav/nav.component'
 import { ProductsModule } from '@my-qart/products'
 import { UiModule } from '@frontend/ui'
 import { HttpClientModule } from '@angular/common/http'
+import { OrdersModule } from '@my-qart/orders'
 
 const routes: Routes = [{ path: '', component: HomePageComponent }]
 
@@ -33,6 +34,7 @@ const routes: Routes = [{ path: '', component: HomePageComponent }]
     ProductsModule,
     UiModule,
     AccordionModule,
+    OrdersModule
   ],
   providers: [],
   bootstrap: [AppComponent],

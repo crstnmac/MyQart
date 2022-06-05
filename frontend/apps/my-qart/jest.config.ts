@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'products',
+/* eslint-disable */
+export default {
+  displayName: 'my-qart',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/products',
+  coverageDirectory: '../../coverage/apps/my-qart',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

@@ -1,14 +1,11 @@
 {
   "projectType": "application",
-  "root": "apps/my-qart",
   "sourceRoot": "apps/my-qart/src",
   "prefix": "frontend",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/my-qart",
         "index": "apps/my-qart/src/index.html",
@@ -16,13 +13,8 @@
         "polyfills": "apps/my-qart/src/polyfills.ts",
         "tsConfig": "apps/my-qart/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/my-qart/src/favicon.ico",
-          "apps/my-qart/src/assets"
-        ],
-        "styles": [
-          "apps/my-qart/src/styles.scss"
-        ],
+        "assets": ["apps/my-qart/src/favicon.ico", "apps/my-qart/src/assets"],
+        "styles": ["apps/my-qart/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -87,11 +79,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/my-qart"
-      ],
+      "outputs": ["coverage/apps/my-qart"],
       "options": {
-        "jestConfig": "apps/my-qart/jest.config.js",
+        "jestConfig": "apps/my-qart/jest.config.ts",
         "passWithNoTests": true
       }
     }

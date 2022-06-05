@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/orders",
   "sourceRoot": "libs/orders/src",
   "prefix": "orders",
   "targets": {
@@ -8,7 +7,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/orders"],
       "options": {
-        "jestConfig": "libs/orders/jest.config.js",
+        "jestConfig": "libs/orders/jest.config.ts",
         "passWithNoTests": true
       }
     },

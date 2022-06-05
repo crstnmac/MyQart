@@ -7,6 +7,7 @@ export class Order {
   shippingAddress1?: string
   shippingAddress2?: string
   shippingCity?: string
+  shippingState?: string
   shippingZip?: string
   shippingCountry?: string
   phone?: string

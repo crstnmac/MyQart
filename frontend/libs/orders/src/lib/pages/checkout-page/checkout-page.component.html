@@ -1,0 +1,72 @@
+<div class="checkout-page">
+  <div class="mb-5">
+    <p-button label="Back to Cart" icon="pi pi-arrow-left" (onClick)="backToCart()"></p-button>
+  </div>
+  <div class="grid checkout-form">
+    <div class="col-8">
+    <form [formGroup]="form" action="">
+      <div class="grid p-fluid">
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="pi pi-sitemap"></i></span>
+            <input type="text" pInputText formControlName="name" placeholder="Name"/>
+          </div>
+          <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error">Name is required</small>
+        </div>
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <input type="text" pInputText formControlName="email" placeholder="Email"/>
+          </div>
+          <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error">
+            <span *ngIf="userForm['email'].errors?.['required']">Email is required</span><span
+            *ngIf="userForm['email'].errors?.['email']">Email is Invalid</span></small>
+        </div>
+        <div class="col-12 lg:col-4">
+          <p-inputMask mask="999 999-9999" formControlName="phone" placeholder="Phone"></p-inputMask>
+          <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error">Phone is required</small>
+        </div>
+      </div>
+
+      <div class="grid p-fluid">
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Street</span>
+            <input formControlName="street" id="street" type="text" pInputText/>
+          </div>
+        </div>
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Appartment</span>
+            <input formControlName="appartment" id="appartment" type="text" pInputText/>
+          </div>
+        </div>
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Zip Code</span>
+            <input formControlName="zip" id="zip" type="text" pInputText/>
+          </div>
+        </div>
+      </div>
+      <div class="grid p-fluid">
+        <div class="col-12 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">City</span>
+            <input formControlName="city" id="city" type="text" pInputText/>
+          </div>
+        </div>
+        <div class="col-12 lg:col-4">
+          <p-dropdown [options]="countries" formControlName="country" optionLabel="label" optionValue="value"
+                      [filter]="true" filterBy="label" [showClear]="true" placeholder="Select a Country"></p-dropdown>
+        </div>
+      </div>
+    </form>
+    </div>
+    <div class="col-4">
+      <orders-order-summary></orders-order-summary>
+      <div class="checkout-button p-fluid">
+        <p-button label="Place Order" (onClick)="onSubmit()"></p-button>
+      </div>
+    </div>
+  </div>
+</div>
+

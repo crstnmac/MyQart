@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core'
 import { environment } from '@env/environment'
 import { Order } from '../models/order'
 import { map, Observable } from 'rxjs'
+import {Product} from "@my-qart/products";
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrdersService {
   apiURLOrders = environment.apiURL + '/orders'
+  apiURLProducts = environment.apiURL + '/products'
 
   constructor(private http: HttpClient) {}
 
@@ -46,4 +48,9 @@ export class OrdersService {
       .get<number>(`${this.apiURLOrders}/get/totalsales`)
       .pipe(map((objectValue: any) => objectValue.totalsales))
   }
+
+  getProduct(productId: string): Observable<Product> {
+    return this.http.get<any>(`${this.apiURLProducts}/${productId}`)
+  }
+
 }

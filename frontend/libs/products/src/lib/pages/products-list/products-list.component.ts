@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Subject, takeUntil } from 'rxjs'
 import { Category } from '../../models/category'
@@ -14,13 +15,20 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   endSubs$: Subject<any> = new Subject()
   products: Product[] = []
   categories: Category[] = []
+  isCategoryPage: boolean
+
   constructor(
     private productService: ProductsService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this._getProducts()
+    this.route.params.subscribe((params) => {
+      params['categoryid'] ? this._getProducts([params['categoryid']]) : this._getProducts()
+      params['categoryid'] ? this.isCategoryPage = true : this.isCategoryPage = false
+    })
+    // this._getProducts()
     this._getCategories()
   }
 

@@ -34,13 +34,13 @@ export class CartService {
   }
 
   getCart() : Cart {
-    const cart: Cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+    const cart: Cart = localStorage.getItem(CART_KEY) === null ? this.emptyCart() :  JSON.parse(localStorage.getItem(CART_KEY) || '{}');
     return cart;
   }
 
   setCartItem(cartItem: CartItem, updateCartItem?:boolean) : Cart {
     const cart: Cart = this.getCart();
-    const  cartItemExist = cart.items.find(item => item.productId === cartItem.productId)
+    const cartItemExist = cart.items.find(item => item.productId === cartItem.productId)
     if(cartItemExist) {
       cart.items.map((item) => {
         if(item.productId === cartItem.productId) {

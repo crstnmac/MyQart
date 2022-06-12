@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router'
 import { CategoriesService, Category } from '@my-qart/products'
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/api'
 import { interval, lastValueFrom, take } from 'rxjs'
 import { Location } from '@angular/common'
@@ -12,7 +12,7 @@ import { Location } from '@angular/common'
   styles: [],
 })
 export class CategoriesFormComponent implements OnInit {
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     icon: ['', Validators.required],
     color: ['', Validators.required],
@@ -22,7 +22,7 @@ export class CategoriesFormComponent implements OnInit {
   currentCategoryId!: string
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private categoryService: CategoriesService,
     private messageService: MessageService,
     private location: Location,

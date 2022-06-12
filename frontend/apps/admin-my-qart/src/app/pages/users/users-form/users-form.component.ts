@@ -1,6 +1,6 @@
 import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { User, UsersService } from '@my-qart/users'
 import { MessageService } from 'primeng/api'
@@ -17,7 +17,7 @@ export class UsersFormComponent implements OnInit {
   currentUserId!: string
   countries: { value: string; label: string }[] = []
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -31,7 +31,7 @@ export class UsersFormComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private location: Location,
     private userService: UsersService,
     private messageService: MessageService,

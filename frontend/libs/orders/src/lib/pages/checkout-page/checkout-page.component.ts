@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {User, UsersService} from "@my-qart/users";
 import {MessageService} from "primeng/api";
-import {interval, lastValueFrom, take} from "rxjs";
+import {interval, lastValueFrom, Subject, take, takeUntil} from "rxjs";
 import {CartService} from "../../services/cart.service";
 import {OrderItem} from "../../models/order-item";
 import {Location} from "@angular/common";
@@ -17,27 +17,16 @@ import {Order} from "../../models/order";
   styles: [],
   providers: [MessageService]
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit,OnDestroy {
 
   isSubmitted = false
   orderItems: OrderItem[] = []
-  currentUser: User =
-    {
-      id: "6239ec6799b501825a4cca04",
-      "name": "Criston",
-      "email": "criston2011@gmail.com",
-      "phone": "872 268-0069",
-      "isAdmin": true,
-      "street": "ABC",
-      "appartment": "XYZss",
-      "zip": "111111",
-      "city": "JKL",
-      "country": "IN",
-    }
-
+  currentUser: User
+  userId: string | undefined
   countries: { value: string; label: string }[] = []
+  unSub$: Subject<any> = new Subject()
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
@@ -49,7 +38,7 @@ export class CheckoutPageComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private userService: UsersService,
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -64,6 +53,12 @@ export class CheckoutPageComponent implements OnInit {
     this.form
     this._getCartItems()
     this._getCountries()
+    this._autoFillUserData()
+  }
+
+  ngOnDestroy(): void {
+    this.unSub$.next(this.userService)
+    this.unSub$.complete()
   }
 
   onSubmit() {
@@ -147,5 +142,24 @@ export class CheckoutPageComponent implements OnInit {
 
   get userForm() {
     return this.form.controls
+  }
+
+  private _autoFillUserData() {
+    this.userService.observeCurrentUser().pipe(takeUntil(this.unSub$)).subscribe((user) => {
+      if(user) {
+        this.userId = user.id
+        this.currentUser = user
+        this.form.patchValue({
+          name: user?.name,
+          email: user?.email,
+          phone: user?.phone,
+          street: user?.street,
+          appartment: user?.appartment,
+          zip: user?.zip,
+          city: user?.city,
+          country: user?.country,
+        })
+      }
+    })
   }
 }

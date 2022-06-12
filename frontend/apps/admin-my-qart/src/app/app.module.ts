@@ -40,6 +40,8 @@ import { TagModule } from 'primeng/tag'
 import { FieldsetModule } from 'primeng/fieldset'
 import { JwtInterceptor, UsersModule } from '@my-qart/users'
 import { AppRoutingModule } from './app-routing.module'
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
 
 const UX_MODULE = [
   CardModule,
@@ -80,6 +82,8 @@ const UX_MODULE = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     FormsModule,
     ReactiveFormsModule,
     ToastModule,

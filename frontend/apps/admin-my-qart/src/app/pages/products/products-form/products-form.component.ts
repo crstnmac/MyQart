@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 import { Component, OnInit } from '@angular/core'
 import { Location } from '@angular/common'
 import { CategoriesService, Category, ProductsService } from '@my-qart/products'
@@ -19,7 +19,7 @@ export class ProductsFormComponent implements OnInit {
   imageFile: File
   currentProductId!: string
 
-  form: FormGroup = this.formBuilder.group({
+  form: UntypedFormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     brand: ['', Validators.required],
     price: ['', Validators.required],
@@ -32,7 +32,7 @@ export class ProductsFormComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private location: Location,
     private categoriesService: CategoriesService,
     private productService: ProductsService,

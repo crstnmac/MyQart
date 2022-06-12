@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { MessageService } from 'primeng/api'
 import { interval, lastValueFrom, take } from 'rxjs'
@@ -13,12 +13,12 @@ import { LocalStorageService } from '../../services/localstorage.service'
   styles: [],
 })
 export class LoginComponent implements OnInit {
-  loginFormGroup: FormGroup
+  loginFormGroup: UntypedFormGroup
   isSubmitted = false
   authError = false
   authMessage = 'Email or password are wrong'
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private auth: AuthService,
     private messageService: MessageService,
     private localStorageService: LocalStorageService,

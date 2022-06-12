@@ -1,11 +1,14 @@
 {
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/orders/src",
   "prefix": "orders",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/orders"],
+      "outputs": [
+        "coverage/libs/orders"
+      ],
       "options": {
         "jestConfig": "libs/orders/jest.config.ts",
         "passWithNoTests": true

@@ -5,11 +5,31 @@
 
 ## Tech Stack
 
-**Client:** NX, Angular, NGRX
+For Frontend :
 
-**Server:** Node, Express
+- Angular 14, And Structuring your Project
 
-**Database**: MongoDB
+- NX Monorepo
+
+- PrimeNg Material Library
+
+- RXJS
+
+- NGRX For User Session
+
+- SCSS
+
+
+
+For Backend ( WebAPI )
+
+- NodeJs
+
+- Express
+
+- MongoDB
+
+- JWT (JSON Web Tokens)
 
 
 ## Run Locally
